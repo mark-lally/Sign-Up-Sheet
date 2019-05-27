@@ -1,0 +1,52 @@
+<!DOCTYPE HTML >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<div style="text-align: center;background-color: silver;">
+		<br>
+		<h1>Football Sign-Up</h1>
+		<br>
+		<br>
+		<h3>Currently showing for: Monday 13th June 2037</h3>
+		<h3 th:text="'Available Players: ' + ${numAvail} + ' out of ' + ${playerCount} + ' total'"></h3>
+		<br>
+		<a th:href="@{/registerForm}"
+			class="btn btn-warning btn-lrg" style="margin-bottom: 10px">
+			Register
+		</a>
+	</div>
+	
+	
+	<table class="table table-bordered table-dark" style ="text-align: center">
+		<thead class="thead-light">
+			<td style="width:25%">First Name</td>
+			<td style="width:25%">Last Name</td>
+			<td style="width:8.33%">Availability</td>
+			<td style="width:16.66%">Actions</td>
+		</thead>
+		<tbody>
+			<tr th:each="tempPlayer : ${players}">
+				<td th:text="${tempPlayer.first_name}"></td>
+				<td th:text="${tempPlayer.last_name}"></td>
+				<td th:text="${tempPlayer.availability}" th:class="${tempPlayer.availability} ? bg-success : bg-danger"></td>
+				<td><a th:href="@{/delete(playerId=${tempPlayer.id})}"
+				class="btn btn-info btn-sm"
+				onclick="if (!(confirm('Are you sure you want to delete this player?'))) return false">
+				Remove Player
+				</a></td>
+			</tr>
+		</tbody>
+	
+	</table>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<title>Sign Up</title>
+</head>
+
+<body>
+	
+	<div class="container">
+		
+		<h3>Employee Directory</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Player</p>
+		
+		<form action="#" th:action="@{/save}"
+						 th:object="${player}" method="POST">
+			
+			<!-- Add hidden form field to handle the update -->
+			<input type="hidden" th:field="*{id}" />
+						 
+			<input type="text" th:field="*{first_name}"
+					class="form-control mb-4 col-4" placeholder="First name">
+					
+			<input type="text" th:field="*{last_name}"
+					class="form-control mb-4 col-4" placeholder="Last name">
+			
+			<div class="form-check">
+			  <input class="form-check-input" th:field="*{availability}" type="radio" name="availability" value="true" checked>
+			  <label class="form-check-label" for="exampleRadios1">
+			    Available to play
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" th:field="*{availability}" type="radio" name=""availability"" value="false">
+			  <label class="form-check-label" for="exampleRadios2">
+			    Not available
+			  </label>
+			</div>
+			<br><br>
+			<button type="submit" class="btn btn-info col-2">Register</button>
+									 
+		</form>
+		
+		<hr>
+		<a th:href="@{/}">Back to Player List</a>
+	
+	</div>
+
+
+</body>
+
+</html>
