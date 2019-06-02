@@ -11,6 +11,8 @@
 </head>
 
 <body>
+	
+	<!-- Banner -->
 	<div style="text-align: center;background-color: silver;">
 		<br>
 		<h1>Football Sign-Up</h1>
@@ -20,33 +22,46 @@
 		<h3 th:text="'Available Players: ' + ${numAvail} + ' out of ' + ${playerCount} + ' total'"></h3>
 		<br>
 		<a th:href="@{/registerForm}"
-			class="btn btn-warning btn-lrg" style="margin-bottom: 10px">
+			class="btn btn-warning btn-lrg" style="margin: 10px">
 			Register
+		</a>
+		<a th:href="@{/info}"
+			class = "btn btn-success btn-lrg" style="margin: 10px">
+			Information
 		</a>
 	</div>
 	
-	
+	<!-- Player list table -->
 	<table class="table table-bordered table-dark" style ="text-align: center">
 		<thead class="thead-light">
-			<td style="width:25%">First Name</td>
-			<td style="width:25%">Last Name</td>
-			<td style="width:8.33%">Availability</td>
-			<td style="width:16.66%">Actions</td>
+			<th style="width:25%">First Name</th>
+			<th style="width:25%">Last Name</th>
+			<th style="width:8.33%">Availability</th>
+			<th style="width:16.66%">Actions</th>
 		</thead>
 		<tbody>
 			<tr th:each="tempPlayer : ${players}">
 				<td th:text="${tempPlayer.first_name}"></td>
 				<td th:text="${tempPlayer.last_name}"></td>
 				<td th:text="${tempPlayer.availability}" th:class="${tempPlayer.availability} ? bg-success : bg-danger"></td>
-				<td><a th:href="@{/delete(playerId=${tempPlayer.id})}"
-				class="btn btn-info btn-sm"
-				onclick="if (!(confirm('Are you sure you want to delete this player?'))) return false">
-				Remove Player
-				</a></td>
+				<td>
+					<!-- 'Delete a player' button -->
+					<a th:href="@{/delete(playerId=${tempPlayer.id})}"
+						class="btn btn-info btn-sm"
+						onclick="if (!(confirm('Are you sure you want to delete this player?'))) return false">
+						Remove Player
+					</a>
+					
+					<!-- 'Update a player' button -->
+					<a th:href="@{/update(playerId=${tempPlayer.id})}"
+						class ="btn btn-info btn-sm">
+						Update Player
+					</a>
+				</td>
 			</tr>
-		</tbody>
-	
+		</tbody>	
 	</table>
+	
 </body>
 
 </html>
